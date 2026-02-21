@@ -1,0 +1,1959 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Les Verbes — 31 глагол</title>
+    <style>
+      :root {
+        --bg: #f2f2f7;
+        --panel: rgba(255, 255, 255, 0.78);
+        --card: #ffffff;
+        --text: #111114;
+        --muted: #5b5b66;
+        --muted2: #7a7a86;
+        --border: rgba(17, 17, 20, 0.10);
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        --shadow2: 0 6px 18px rgba(0, 0, 0, 0.10);
+        --accent: #0a84ff;
+        --good: #2ecc71;
+        --bad: #ff3b30;
+        --warn: #ff9f0a;
+        --radius: 18px;
+        --radius2: 16px;
+        --tap: 44px;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Inter, Helvetica, Arial, system-ui, sans-serif;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b0b0f;
+          --panel: rgba(18, 18, 22, 0.72);
+          --card: #15151a;
+          --text: #f4f4f7;
+          --muted: #b5b5c0;
+          --muted2: #9e9eaa;
+          --border: rgba(244, 244, 247, 0.12);
+          --shadow: 0 14px 38px rgba(0, 0, 0, 0.45);
+          --shadow2: 0 8px 22px rgba(0, 0, 0, 0.55);
+          --accent: #0a84ff;
+          --good: #32d74b;
+          --bad: #ff453a;
+          --warn: #ffd60a;
+        }
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        background: radial-gradient(1200px 900px at 50% -10%, rgba(10,132,255,0.10), transparent 60%),
+                    radial-gradient(900px 700px at 5% 30%, rgba(255,159,10,0.08), transparent 55%),
+                    radial-gradient(900px 700px at 95% 40%, rgba(46,204,113,0.07), transparent 55%),
+                    var(--bg);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      button, input, textarea, select { font: inherit; color: inherit; }
+
+      .app {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        padding: calc(10px + env(safe-area-inset-top)) 14px 10px;
+        background: var(--panel);
+        backdrop-filter: saturate(180%) blur(16px);
+        -webkit-backdrop-filter: saturate(180%) blur(16px);
+        border-bottom: 1px solid var(--border);
+      }
+      .topbar-inner {
+        max-width: 980px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        align-items: center;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .brand h1 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 720;
+        letter-spacing: -0.01em;
+      }
+      .brand small {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 550;
+      }
+      .brand-title {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.1;
+      }
+
+      .segmented {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+        gap: 0;
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.04);
+        border-radius: 999px;
+        padding: 2px;
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+      }
+      @media (prefers-color-scheme: dark) {
+        .segmented { background: rgba(255,255,255,0.06); }
+      }
+      .segmented button {
+        min-height: 36px;
+        border: 0;
+        background: transparent;
+        border-radius: 999px;
+        padding: 8px 10px;
+        font-size: 13px;
+        font-weight: 650;
+        letter-spacing: -0.01em;
+        color: var(--muted);
+        cursor: pointer;
+        transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+      }
+      .segmented button[aria-selected="true"] {
+        background: var(--card);
+        color: var(--text);
+        box-shadow: var(--shadow2);
+      }
+      .segmented button:active { transform: scale(0.98); }
+
+      .content {
+        flex: 1;
+        padding: 14px 14px calc(22px + env(safe-area-inset-bottom));
+      }
+      .container {
+        max-width: 980px;
+        margin: 0 auto;
+        display: grid;
+        gap: 12px;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 14px;
+      }
+      .card.compact { padding: 12px; }
+      .card-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+      .card-title {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 720;
+        letter-spacing: -0.01em;
+      }
+      .subtle {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+      .row.spread { justify-content: space-between; }
+      .spacer { flex: 1; }
+
+      .field {
+        display: grid;
+        gap: 6px;
+      }
+      .label {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 650;
+      }
+      .input {
+        min-height: var(--tap);
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: var(--radius2);
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.03);
+        outline: none;
+        transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      }
+      @media (prefers-color-scheme: dark) {
+        .input { background: rgba(255,255,255,0.06); }
+      }
+      .input:focus {
+        border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent);
+      }
+      textarea.input { min-height: 160px; resize: vertical; font-family: var(--mono); font-size: 12px; }
+
+      .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+      .chip {
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.03);
+        padding: 8px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 650;
+        color: var(--muted);
+        cursor: pointer;
+        min-height: 36px;
+        transition: background 180ms ease, color 180ms ease, transform 180ms ease, border-color 180ms ease;
+      }
+      @media (prefers-color-scheme: dark) {
+        .chip { background: rgba(255,255,255,0.06); }
+      }
+      .chip[aria-pressed="true"] {
+        background: color-mix(in srgb, var(--accent) 18%, var(--card));
+        border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+        color: var(--text);
+      }
+      .chip:active { transform: scale(0.98); }
+
+      .list {
+        display: grid;
+        gap: 8px;
+      }
+      .list-item {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: center;
+        padding: 12px;
+        border-radius: var(--radius2);
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.02);
+        cursor: pointer;
+        transition: background 180ms ease, transform 180ms ease, border-color 180ms ease;
+      }
+      @media (prefers-color-scheme: dark) {
+        .list-item { background: rgba(255,255,255,0.05); }
+      }
+      .list-item:hover { border-color: color-mix(in srgb, var(--accent) 25%, var(--border)); }
+      .list-item:active { transform: scale(0.99); }
+      .list-item[aria-current="true"] {
+        background: color-mix(in srgb, var(--accent) 12%, var(--card));
+        border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+      }
+      .verb {
+        display: grid;
+        gap: 2px;
+        align-content: start;
+      }
+      .verb strong {
+        font-size: 16px;
+        font-weight: 760;
+        letter-spacing: -0.01em;
+      }
+      .tags { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+      .tag {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--muted);
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.03);
+        padding: 5px 8px;
+        border-radius: 999px;
+        white-space: nowrap;
+      }
+      @media (prefers-color-scheme: dark) { .tag { background: rgba(255,255,255,0.06); } }
+      .tag.accent {
+        color: var(--text);
+        border-color: var(--border);
+        background: rgba(0,0,0,0.03);
+      }
+      .tag.good { color: var(--good); }
+      .tag.bad { color: var(--bad); }
+      .tag.warn { color: var(--warn); }
+
+      /* Mobile-first: buttons stack nicely; on wider screens wrap in a row */
+      .btns { display: grid; gap: 10px; margin-top: 10px; }
+      @media (min-width: 520px) { .btns { display: flex; flex-wrap: wrap; align-items: center; } }
+      .btn {
+        min-height: var(--tap);
+        padding: 10px 12px;
+        border-radius: var(--radius2);
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.03);
+        cursor: pointer;
+        font-weight: 720;
+        letter-spacing: -0.01em;
+        transition: background 180ms ease, transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      }
+      @media (prefers-color-scheme: dark) { .btn { background: rgba(255,255,255,0.06); } }
+      .btn.primary {
+        background: var(--accent);
+        color: white;
+        border-color: color-mix(in srgb, var(--accent) 70%, #000);
+        box-shadow: 0 10px 22px color-mix(in srgb, var(--accent) 20%, transparent);
+      }
+      .btn.danger { color: white; background: var(--bad); border-color: color-mix(in srgb, var(--bad) 70%, #000); }
+      .btn:active { transform: scale(0.99); }
+      .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+      .btn.ghost { background: transparent; }
+
+      .grid-2 { display: grid; gap: 12px; }
+      @media (min-width: 860px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+      .table {
+        display: grid;
+        gap: 6px;
+        margin-top: 10px;
+      }
+      .trow {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 10px;
+        padding: 10px 12px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius2);
+        background: rgba(0,0,0,0.02);
+      }
+      @media (prefers-color-scheme: dark) { .trow { background: rgba(255,255,255,0.05); } }
+      @media (max-width: 390px) { .trow { grid-template-columns: 118px 1fr; } }
+      .pron { color: var(--muted); font-weight: 720; }
+      .form { font-family: var(--sans); font-weight: 760; letter-spacing: -0.01em; }
+      .form code { font-family: var(--mono); font-size: 12px; }
+
+      .quiz {
+        display: grid;
+        gap: 12px;
+      }
+      .prompt {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.03);
+        font-size: 12px;
+        font-weight: 720;
+        color: var(--muted);
+      }
+      @media (prefers-color-scheme: dark) { .pill { background: rgba(255,255,255,0.06); } }
+      .pill strong { color: var(--text); font-weight: 800; }
+
+      .choices { display: grid; gap: 10px; margin-top: 10px; }
+      .choice {
+        width: 100%;
+        text-align: left;
+        padding: 12px 12px;
+        border-radius: var(--radius2);
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.02);
+        cursor: pointer;
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+        font-weight: 740;
+      }
+      @media (prefers-color-scheme: dark) { .choice { background: rgba(255,255,255,0.05); } }
+      .choice:active { transform: scale(0.99); }
+      .choice[disabled] { opacity: 0.72; cursor: not-allowed; }
+      .choice.good {
+        border-color: color-mix(in srgb, var(--good) 55%, var(--border));
+        background: color-mix(in srgb, var(--good) 14%, var(--card));
+      }
+      .choice.bad {
+        border-color: color-mix(in srgb, var(--bad) 55%, var(--border));
+        background: color-mix(in srgb, var(--bad) 12%, var(--card));
+      }
+
+      .feedback {
+        border-radius: var(--radius2);
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.02);
+        padding: 12px;
+        margin-top: 10px;
+      }
+      @media (prefers-color-scheme: dark) { .feedback { background: rgba(255,255,255,0.05); } }
+      .feedback.good { border-color: color-mix(in srgb, var(--good) 55%, var(--border)); }
+      .feedback.bad { border-color: color-mix(in srgb, var(--bad) 55%, var(--border)); }
+      .feedback h3 { margin: 0 0 6px; font-size: 14px; font-weight: 820; }
+      .feedback p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.35; }
+      .feedback .answer {
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px dashed var(--border);
+        font-weight: 820;
+        letter-spacing: -0.01em;
+      }
+
+      .flashcard-wrap { display: grid; gap: 10px; }
+      .flashcard {
+        perspective: 1200px;
+      }
+      .flashcard-inner {
+        position: relative;
+        min-height: 170px;
+        border-radius: var(--radius);
+        transform-style: preserve-3d;
+        transition: transform 240ms ease;
+        cursor: pointer;
+      }
+      .flashcard-inner.is-flipped { transform: rotateY(180deg); }
+      .face {
+        position: absolute;
+        inset: 0;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: var(--card);
+        box-shadow: var(--shadow);
+        padding: 16px;
+        backface-visibility: hidden;
+        display: grid;
+        align-content: center;
+        gap: 10px;
+      }
+      .face.back { transform: rotateY(180deg); }
+      .big {
+        font-size: 18px;
+        font-weight: 860;
+        letter-spacing: -0.02em;
+      }
+      .big .muted { color: var(--muted); font-weight: 740; }
+      .small { color: var(--muted); font-size: 13px; line-height: 1.35; }
+
+      .kpi {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .kpi .tile {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 12px;
+        background: rgba(0,0,0,0.02);
+      }
+      @media (prefers-color-scheme: dark) { .kpi .tile { background: rgba(255,255,255,0.05); } }
+      .kpi .num { font-size: 20px; font-weight: 900; letter-spacing: -0.02em; }
+      .kpi .lbl { color: var(--muted); font-size: 12px; font-weight: 650; }
+      @media (min-width: 860px) {
+        .kpi { grid-template-columns: repeat(4, 1fr); }
+      }
+
+      details.help {
+        margin-top: 4px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.02);
+        padding: 12px 12px;
+      }
+      @media (prefers-color-scheme: dark) { details.help { background: rgba(255,255,255,0.05); } }
+      details.help summary {
+        cursor: pointer;
+        font-weight: 780;
+        letter-spacing: -0.01em;
+        list-style: none;
+      }
+      details.help summary::-webkit-details-marker { display: none; }
+      .help p { margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+      .help ul { margin: 8px 0 0 18px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+
+      .sr-only {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        padding: 0 !important;
+        margin: -1px !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        white-space: nowrap !important;
+        border: 0 !important;
+      }
+      :focus-visible {
+        outline: 3px solid color-mix(in srgb, var(--accent) 55%, transparent);
+        outline-offset: 3px;
+        border-radius: var(--radius2);
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: none;
+      }
+      .modal[aria-hidden="false"] { display: grid; }
+      .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.38);
+        backdrop-filter: blur(2px);
+      }
+      .sheet {
+        position: relative;
+        align-self: end;
+        margin: 10px 10px calc(10px + env(safe-area-inset-bottom));
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: var(--card);
+        box-shadow: var(--shadow);
+        padding: 14px;
+        max-height: min(80vh, 820px);
+        overflow: auto;
+        transform: translateY(12px);
+        opacity: 0;
+        transition: transform 200ms ease, opacity 200ms ease;
+      }
+      .modal[aria-hidden="false"] .sheet { transform: translateY(0); opacity: 1; }
+      .sheet h2 {
+        margin: 0 0 8px;
+        font-size: 16px;
+        font-weight: 860;
+        letter-spacing: -0.02em;
+      }
+      .sheet .close-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+      .hr { height: 1px; background: var(--border); margin: 10px 0; }
+
+      /* Consistent vertical rhythm inside cards */
+      .card .segmented { margin: 8px 0 10px; }
+    </style>
+  </head>
+  <body>
+    <div class="app" id="app">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="brand">
+            <div class="brand-title">
+              <h1>Les Verbes</h1>
+              <small>31 глагол · 5 времён · без интернета</small>
+            </div>
+            <small id="topStatus" aria-live="polite"></small>
+          </div>
+          <div class="segmented" role="tablist" aria-label="Режимы">
+            <button type="button" role="tab" data-mode="ref" aria-selected="true">Справочник</button>
+            <button type="button" role="tab" data-mode="train" aria-selected="false">Тренировка</button>
+            <button type="button" role="tab" data-mode="stats" aria-selected="false">Статистика</button>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+        <div class="container" id="view"></div>
+        <details class="help">
+          <summary>Как пользоваться</summary>
+          <p>
+            <strong>Справочник</strong> — выберите глагол, переключайте времена сегментом или нажмите «Показать всё».
+            <strong>Тренировка</strong> — три типа задач: выбор ответа, ввод и флеш‑карточки. Ошибки показываются чаще.
+            <strong>Статистика</strong> — прогресс хранится в <code>localStorage</code> (на этом устройстве), можно экспортировать/импортировать JSON.
+          </p>
+          <ul>
+            <li>В <strong>Passé composé</strong> показываем базовую форму для глаголов с <strong>être</strong> (m.sg): в реальной речи возможны согласования (allée/allés/allées и т. п.).</li>
+            <li>В <strong>Typing</strong> пробелы нормализуются, но акценты важны: <code>é</code> ≠ <code>e</code>.</li>
+            <li>Совет: если клавиатура не показывает акценты, включите французскую раскладку или используйте автозамену.</li>
+          </ul>
+        </details>
+      </main>
+    </div>
+
+    <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Диалог">
+      <div class="overlay" data-close="1" aria-hidden="true"></div>
+      <div class="sheet" role="document">
+        <div class="close-row">
+          <h2 id="modalTitle">—</h2>
+          <button class="btn" type="button" data-close="1" aria-label="Закрыть">Закрыть</button>
+        </div>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+
+    <script>
+      (() => {
+        "use strict";
+
+        const PRONOUNS = ["je", "tu", "il/elle/on", "nous", "vous", "ils/elles"];
+        const TENSES = [
+          { id: "present", label: "Présent", short: "Présent", hint: "Настоящее время: формы нужно запомнить как есть." },
+          { id: "imparfait", label: "Imparfait", short: "Imparfait", hint: "Часто: основа 1 л. мн. Présent без -ons + -ais/-ais/-ait/-ions/-iez/-aient (есть исключения)." },
+          { id: "passeCompose", label: "Passé composé", short: "PC", hint: "Auxiliaire (avoir/être) в Présent + participe passé." },
+          { id: "futurProche", label: "Futur proche", short: "Futur proche", hint: "Aller в Présent + infinitif." },
+          { id: "futurSimple", label: "Futur simple", short: "Futur simple", hint: "Основа будущего + -ai/-as/-a/-ons/-ez/-ont (есть исключения)." },
+        ];
+
+        const AUX_PRESENT = {
+          avoir: ["ai", "as", "a", "avons", "avez", "ont"],
+          être: ["suis", "es", "est", "sommes", "êtes", "sont"],
+        };
+
+        const VOWEL_START = new Set(
+          ["a","à","â","ä","e","é","è","ê","ë","i","î","ï","o","ô","ö","u","ù","û","ü","y","œ","h"]
+        );
+
+        const VERBS = [
+          {
+            id: "etre",
+            infinitive: "être",
+            ru: "быть",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "été",
+            conj: {
+              present: ["suis", "es", "est", "sommes", "êtes", "sont"],
+              imparfait: ["étais", "étais", "était", "étions", "étiez", "étaient"],
+              futurSimple: ["serai", "seras", "sera", "serons", "serez", "seront"],
+            },
+          },
+          {
+            id: "avoir",
+            infinitive: "avoir",
+            ru: "иметь",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "eu",
+            conj: {
+              present: ["ai", "as", "a", "avons", "avez", "ont"],
+              imparfait: ["avais", "avais", "avait", "avions", "aviez", "avaient"],
+              futurSimple: ["aurai", "auras", "aura", "aurons", "aurez", "auront"],
+            },
+          },
+          {
+            id: "aller",
+            infinitive: "aller",
+            ru: "идти/ехать",
+            group: "irregular",
+            pcAux: "être",
+            pp: "allé",
+            conj: {
+              present: ["vais", "vas", "va", "allons", "allez", "vont"],
+              imparfait: ["allais", "allais", "allait", "allions", "alliez", "allaient"],
+              futurSimple: ["irai", "iras", "ira", "irons", "irez", "iront"],
+            },
+          },
+          {
+            id: "faire",
+            infinitive: "faire",
+            ru: "делать",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "fait",
+            conj: {
+              present: ["fais", "fais", "fait", "faisons", "faites", "font"],
+              imparfait: ["faisais", "faisais", "faisait", "faisions", "faisiez", "faisaient"],
+              futurSimple: ["ferai", "feras", "fera", "ferons", "ferez", "feront"],
+            },
+          },
+          {
+            id: "parler",
+            infinitive: "parler",
+            ru: "говорить",
+            group: "er",
+            pcAux: "avoir",
+            pp: "parlé",
+            conj: {
+              present: ["parle", "parles", "parle", "parlons", "parlez", "parlent"],
+              imparfait: ["parlais", "parlais", "parlait", "parlions", "parliez", "parlaient"],
+              futurSimple: ["parlerai", "parleras", "parlera", "parlerons", "parlerez", "parleront"],
+            },
+          },
+          {
+            id: "aimer",
+            infinitive: "aimer",
+            ru: "любить/нравиться",
+            group: "er",
+            pcAux: "avoir",
+            pp: "aimé",
+            conj: {
+              present: ["aime", "aimes", "aime", "aimons", "aimez", "aiment"],
+              imparfait: ["aimais", "aimais", "aimait", "aimions", "aimiez", "aimaient"],
+              futurSimple: ["aimerai", "aimeras", "aimera", "aimerons", "aimerez", "aimeront"],
+            },
+          },
+          {
+            id: "finir",
+            infinitive: "finir",
+            ru: "заканчивать",
+            group: "ir",
+            pcAux: "avoir",
+            pp: "fini",
+            conj: {
+              present: ["finis", "finis", "finit", "finissons", "finissez", "finissent"],
+              imparfait: ["finissais", "finissais", "finissait", "finissions", "finissiez", "finissaient"],
+              futurSimple: ["finirai", "finiras", "finira", "finirons", "finirez", "finiront"],
+            },
+          },
+          {
+            id: "prendre",
+            infinitive: "prendre",
+            ru: "брать",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "pris",
+            conj: {
+              present: ["prends", "prends", "prend", "prenons", "prenez", "prennent"],
+              imparfait: ["prenais", "prenais", "prenait", "prenions", "preniez", "prenaient"],
+              futurSimple: ["prendrai", "prendras", "prendra", "prendrons", "prendrez", "prendront"],
+            },
+          },
+          {
+            id: "venir",
+            infinitive: "venir",
+            ru: "приходить/приезжать",
+            group: "irregular",
+            pcAux: "être",
+            pp: "venu",
+            conj: {
+              present: ["viens", "viens", "vient", "venons", "venez", "viennent"],
+              imparfait: ["venais", "venais", "venait", "venions", "veniez", "venaient"],
+              futurSimple: ["viendrai", "viendras", "viendra", "viendrons", "viendrez", "viendront"],
+            },
+          },
+          {
+            id: "voir",
+            infinitive: "voir",
+            ru: "видеть",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "vu",
+            conj: {
+              present: ["vois", "vois", "voit", "voyons", "voyez", "voient"],
+              imparfait: ["voyais", "voyais", "voyait", "voyions", "voyiez", "voyaient"],
+              futurSimple: ["verrai", "verras", "verra", "verrons", "verrez", "verront"],
+            },
+          },
+          {
+            id: "savoir",
+            infinitive: "savoir",
+            ru: "знать",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "su",
+            conj: {
+              present: ["sais", "sais", "sait", "savons", "savez", "savent"],
+              imparfait: ["savais", "savais", "savait", "savions", "saviez", "savaient"],
+              futurSimple: ["saurai", "sauras", "saura", "saurons", "saurez", "sauront"],
+            },
+          },
+          {
+            id: "pouvoir",
+            infinitive: "pouvoir",
+            ru: "мочь",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "pu",
+            conj: {
+              present: ["peux", "peux", "peut", "pouvons", "pouvez", "peuvent"],
+              imparfait: ["pouvais", "pouvais", "pouvait", "pouvions", "pouviez", "pouvaient"],
+              futurSimple: ["pourrai", "pourras", "pourra", "pourrons", "pourrez", "pourront"],
+            },
+          },
+          {
+            id: "vouloir",
+            infinitive: "vouloir",
+            ru: "хотеть",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "voulu",
+            conj: {
+              present: ["veux", "veux", "veut", "voulons", "voulez", "veulent"],
+              imparfait: ["voulais", "voulais", "voulait", "voulions", "vouliez", "voulaient"],
+              futurSimple: ["voudrai", "voudras", "voudra", "voudrons", "voudrez", "voudront"],
+            },
+          },
+          {
+            id: "devoir",
+            infinitive: "devoir",
+            ru: "быть должным",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "dû",
+            conj: {
+              present: ["dois", "dois", "doit", "devons", "devez", "doivent"],
+              imparfait: ["devais", "devais", "devait", "devions", "deviez", "devaient"],
+              futurSimple: ["devrai", "devras", "devra", "devrons", "devrez", "devront"],
+            },
+          },
+          {
+            id: "mettre",
+            infinitive: "mettre",
+            ru: "класть/ставить/надевать",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "mis",
+            conj: {
+              present: ["mets", "mets", "met", "mettons", "mettez", "mettent"],
+              imparfait: ["mettais", "mettais", "mettait", "mettions", "mettiez", "mettaient"],
+              futurSimple: ["mettrai", "mettras", "mettra", "mettrons", "mettrez", "mettront"],
+            },
+          },
+          {
+            id: "dire",
+            infinitive: "dire",
+            ru: "говорить/сказать",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "dit",
+            conj: {
+              present: ["dis", "dis", "dit", "disons", "dites", "disent"],
+              imparfait: ["disais", "disais", "disait", "disions", "disiez", "disaient"],
+              futurSimple: ["dirai", "diras", "dira", "dirons", "direz", "diront"],
+            },
+          },
+          {
+            id: "ecrire",
+            infinitive: "écrire",
+            ru: "писать",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "écrit",
+            conj: {
+              present: ["écris", "écris", "écrit", "écrivons", "écrivez", "écrivent"],
+              imparfait: ["écrivais", "écrivais", "écrivait", "écrivions", "écriviez", "écrivaient"],
+              futurSimple: ["écrirai", "écriras", "écrira", "écrirons", "écrirez", "écriront"],
+            },
+          },
+          {
+            id: "lire",
+            infinitive: "lire",
+            ru: "читать",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "lu",
+            conj: {
+              present: ["lis", "lis", "lit", "lisons", "lisez", "lisent"],
+              imparfait: ["lisais", "lisais", "lisait", "lisions", "lisiez", "lisaient"],
+              futurSimple: ["lirai", "liras", "lira", "lirons", "lirez", "liront"],
+            },
+          },
+          {
+            id: "jouer",
+            infinitive: "jouer",
+            ru: "играть",
+            group: "er",
+            pcAux: "avoir",
+            pp: "joué",
+            conj: {
+              present: ["joue", "joues", "joue", "jouons", "jouez", "jouent"],
+              imparfait: ["jouais", "jouais", "jouait", "jouions", "jouiez", "jouaient"],
+              futurSimple: ["jouerai", "joueras", "jouera", "jouerons", "jouerez", "joueront"],
+            },
+          },
+          {
+            id: "manger",
+            infinitive: "manger",
+            ru: "есть (кушать)",
+            group: "er",
+            pcAux: "avoir",
+            pp: "mangé",
+            conj: {
+              present: ["mange", "manges", "mange", "mangeons", "mangez", "mangent"],
+              imparfait: ["mangeais", "mangeais", "mangeait", "mangions", "mangiez", "mangeaient"],
+              futurSimple: ["mangerai", "mangeras", "mangera", "mangerons", "mangerez", "mangeront"],
+            },
+          },
+          {
+            id: "recevoir",
+            infinitive: "recevoir",
+            ru: "получать",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "reçu",
+            conj: {
+              present: ["reçois", "reçois", "reçoit", "recevons", "recevez", "reçoivent"],
+              imparfait: ["recevais", "recevais", "recevait", "recevions", "receviez", "recevaient"],
+              futurSimple: ["recevrai", "recevras", "recevra", "recevrons", "recevrez", "recevront"],
+            },
+          },
+          {
+            id: "envoyer",
+            infinitive: "envoyer",
+            ru: "отправлять",
+            group: "er",
+            pcAux: "avoir",
+            pp: "envoyé",
+            conj: {
+              present: ["envoie", "envoies", "envoie", "envoyons", "envoyez", "envoient"],
+              imparfait: ["envoyais", "envoyais", "envoyait", "envoyions", "envoyiez", "envoyaient"],
+              futurSimple: ["enverrai", "enverras", "enverra", "enverrons", "enverrez", "enverront"],
+            },
+          },
+          {
+            id: "cueillir",
+            infinitive: "cueillir",
+            ru: "собирать/срывать",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "cueilli",
+            conj: {
+              present: ["cueille", "cueilles", "cueille", "cueillons", "cueillez", "cueillent"],
+              imparfait: ["cueillais", "cueillais", "cueillait", "cueillions", "cueilliez", "cueillaient"],
+              futurSimple: ["cueillerai", "cueilleras", "cueillera", "cueillerons", "cueillerez", "cueilleront"],
+            },
+          },
+          {
+            id: "ouvrir",
+            infinitive: "ouvrir",
+            ru: "открывать",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "ouvert",
+            conj: {
+              present: ["ouvre", "ouvres", "ouvre", "ouvrons", "ouvrez", "ouvrent"],
+              imparfait: ["ouvrais", "ouvrais", "ouvrait", "ouvrions", "ouvriez", "ouvraient"],
+              futurSimple: ["ouvrirai", "ouvriras", "ouvrira", "ouvrirons", "ouvrirez", "ouvriront"],
+            },
+          },
+          {
+            id: "rire",
+            infinitive: "rire",
+            ru: "смеяться",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "ri",
+            conj: {
+              present: ["ris", "ris", "rit", "rions", "riez", "rient"],
+              imparfait: ["riais", "riais", "riait", "riions", "riiez", "riaient"],
+              futurSimple: ["rirai", "riras", "rira", "rirons", "rirez", "riront"],
+            },
+          },
+          {
+            id: "valoir",
+            infinitive: "valoir",
+            ru: "стоить/быть достойным",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "valu",
+            conj: {
+              present: ["vaux", "vaux", "vaut", "valons", "valez", "valent"],
+              imparfait: ["valais", "valais", "valait", "valions", "valiez", "valaient"],
+              futurSimple: ["vaudrai", "vaudras", "vaudra", "vaudrons", "vaudrez", "vaudront"],
+            },
+          },
+          {
+            id: "craindre",
+            infinitive: "craindre",
+            ru: "бояться",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "craint",
+            conj: {
+              present: ["crains", "crains", "craint", "craignons", "craignez", "craignent"],
+              imparfait: ["craignais", "craignais", "craignait", "craignions", "craigniez", "craignaient"],
+              futurSimple: ["craindrai", "craindras", "craindra", "craindrons", "craindrez", "craindront"],
+            },
+          },
+          {
+            id: "conclure",
+            infinitive: "conclure",
+            ru: "заключать/делать вывод",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "conclu",
+            conj: {
+              present: ["conclus", "conclus", "conclut", "concluons", "concluez", "concluent"],
+              imparfait: ["concluais", "concluais", "concluait", "concluions", "concluiez", "concluaient"],
+              futurSimple: ["conclurai", "concluras", "conclura", "conclurons", "conclurez", "concluront"],
+            },
+          },
+          {
+            id: "seplaire",
+            infinitive: "se plaire",
+            ru: "находить удовольствие/нравиться себе",
+            group: "irregular",
+            pcAux: "être",
+            pp: "plu",
+            conj: {
+              present: ["me plais", "te plais", "se plaît", "nous plaisons", "vous plaisez", "se plaisent"],
+              imparfait: ["me plaisais", "te plaisais", "se plaisait", "nous plaisions", "vous plaisiez", "se plaisaient"],
+              futurSimple: ["me plairai", "te plairas", "se plaira", "nous plairons", "vous plairez", "se plairont"],
+              futurProche: ["vais me plaire", "vas te plaire", "va se plaire", "allons nous plaire", "allez vous plaire", "vont se plaire"],
+              passeCompose: ["me suis plu", "t'es plu", "s'est plu", "nous sommes plu", "vous êtes plu", "se sont plu"],
+            },
+          },
+          {
+            id: "bouillir",
+            infinitive: "bouillir",
+            ru: "кипеть",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "bouilli",
+            conj: {
+              present: ["bous", "bous", "bout", "bouillons", "bouillez", "bouillent"],
+              imparfait: ["bouillais", "bouillais", "bouillait", "bouillions", "bouilliez", "bouillaient"],
+              futurSimple: ["bouillirai", "bouilliras", "bouillira", "bouillirons", "bouillirez", "bouilliront"],
+            },
+          },
+          {
+            id: "courir",
+            infinitive: "courir",
+            ru: "бежать",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "couru",
+            conj: {
+              present: ["cours", "cours", "court", "courons", "courez", "courent"],
+              imparfait: ["courais", "courais", "courait", "courions", "couriez", "couraient"],
+              futurSimple: ["courrai", "courras", "courra", "courrons", "courrez", "courront"],
+            },
+          },
+        ];
+
+        // Derive Futur proche + Passé composé as ready strings (per requirements: display-ready).
+        const aller = VERBS.find(v => v.id === "aller");
+        for (const v of VERBS) {
+          if (!v.conj.futurProche) v.conj.futurProche = PRONOUNS.map((_, i) => `${aller.conj.present[i]} ${v.infinitive}`);
+          const aux = AUX_PRESENT[v.pcAux];
+          if (!v.conj.passeCompose) v.conj.passeCompose = PRONOUNS.map((_, i) => `${aux[i]} ${v.pp}`);
+          Object.freeze(v.conj.present);
+          Object.freeze(v.conj.imparfait);
+          Object.freeze(v.conj.futurSimple);
+          Object.freeze(v.conj.futurProche);
+          Object.freeze(v.conj.passeCompose);
+          Object.freeze(v.conj);
+          Object.freeze(v);
+        }
+        Object.freeze(VERBS);
+
+        const Store = (() => {
+          const KEY = "lesverbes-progress-v1";
+          const empty = () => ({ version: 1, items: {}, updatedAt: Date.now() });
+          const safeParse = (text) => {
+            try { return JSON.parse(text); } catch { return null; }
+          };
+          const normalize = (raw) => {
+            if (!raw || typeof raw !== "object") return empty();
+            const items = raw.items && typeof raw.items === "object" ? raw.items : {};
+            const out = empty();
+            for (const [k, v] of Object.entries(items)) {
+              if (!k || typeof k !== "string") continue;
+              const c = Math.max(0, Number(v?.c ?? 0) || 0);
+              const w = Math.max(0, Number(v?.w ?? 0) || 0);
+              if (c === 0 && w === 0) continue;
+              out.items[k] = { c, w };
+            }
+            out.updatedAt = Number(raw.updatedAt) || Date.now();
+            return out;
+          };
+          const load = () => {
+            const raw = safeParse(localStorage.getItem(KEY) || "");
+            return normalize(raw);
+          };
+          const save = (state) => {
+            const next = normalize(state);
+            next.updatedAt = Date.now();
+            localStorage.setItem(KEY, JSON.stringify(next));
+            return next;
+          };
+          const reset = () => {
+            localStorage.removeItem(KEY);
+            return empty();
+          };
+          return { KEY, empty, load, save, reset, normalize, safeParse };
+        })();
+
+        const $ = (sel, root = document) => root.querySelector(sel);
+        const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+        const el = (tag, attrs = {}, children = []) => {
+          const node = document.createElement(tag);
+          for (const [k, v] of Object.entries(attrs || {})) {
+            if (k === "class") node.className = v;
+            else if (k === "dataset") Object.assign(node.dataset, v);
+            else if (k.startsWith("on") && typeof v === "function") node.addEventListener(k.slice(2), v);
+            else if (v === true) node.setAttribute(k, "");
+            else if (v === false || v == null) {}
+            else node.setAttribute(k, String(v));
+          }
+          const add = (c) => {
+            if (c == null) return;
+            if (Array.isArray(c)) { c.forEach(add); return; }
+            if (c instanceof Node) node.appendChild(c);
+            else node.appendChild(document.createTextNode(String(c)));
+          };
+          add(children);
+          return node;
+        };
+        const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+        const shuffle = (arr) => {
+          const a = arr.slice();
+          for (let i = a.length - 1; i > 0; i--) {
+            const j = (Math.random() * (i + 1)) | 0;
+            [a[i], a[j]] = [a[j], a[i]];
+          }
+          return a;
+        };
+        const sampleWeighted = (items, weightFn) => {
+          let total = 0;
+          const weights = items.map((it) => {
+            const w = Math.max(0, weightFn(it) || 0);
+            total += w;
+            return w;
+          });
+          if (total <= 0) return items[(Math.random() * items.length) | 0];
+          let r = Math.random() * total;
+          for (let i = 0; i < items.length; i++) {
+            r -= weights[i];
+            if (r <= 0) return items[i];
+          }
+          return items[items.length - 1];
+        };
+
+        const normalizeInput = (s) => {
+          if (typeof s !== "string") return "";
+          return s
+            .replace(/\u00A0/g, " ")
+            .replace(/[’ʼ]/g, "'")
+            .replace(/\s*'\s*/g, "'")
+            .trim()
+            .replace(/\s+/g, " ");
+        };
+
+        const startsWithVowel = (s) => {
+          const ch = (s || "").trim().toLowerCase()[0];
+          return VOWEL_START.has(ch);
+        };
+        const joinPronoun = (pronoun, form) => {
+          const f = String(form);
+          if (pronoun === "je" && startsWithVowel(f)) return `j'${f}`;
+          return `${pronoun} ${f}`;
+        };
+
+        const tenseById = (id) => TENSES.find(t => t.id === id);
+        const verbById = (id) => VERBS.find(v => v.id === id);
+        const conjugated = (verb, tenseId, pronIndex) => joinPronoun(PRONOUNS[pronIndex], verb.conj[tenseId][pronIndex]);
+        const keyOf = (verbId, tenseId, pronIndex) => `${verbId}|${tenseId}|${pronIndex}`;
+        const parseKey = (k) => {
+          const [verbId, tenseId, pron] = String(k).split("|");
+          return { verbId, tenseId, pronIndex: Number(pron) };
+        };
+
+        const buildAllItems = () => {
+          const items = [];
+          for (const v of VERBS) {
+            for (const t of TENSES) {
+              for (let i = 0; i < PRONOUNS.length; i++) {
+                items.push({ verbId: v.id, tenseId: t.id, pronIndex: i });
+              }
+            }
+          }
+          return items;
+        };
+        const ALL_ITEMS = buildAllItems();
+
+        const Progress = (() => {
+          let state = Store.load();
+          const get = (k) => state.items[k] || { c: 0, w: 0 };
+          const bump = (k, ok) => {
+            const cur = get(k);
+            state.items[k] = { c: cur.c + (ok ? 1 : 0), w: cur.w + (ok ? 0 : 1) };
+            state = Store.save(state);
+            return state;
+          };
+          const reset = () => { state = Store.reset(); return state; };
+          const setFromJson = (text) => {
+            const raw = Store.safeParse(text);
+            if (!raw) return { ok: false, error: "Не удалось прочитать JSON." };
+            state = Store.save(Store.normalize(raw));
+            return { ok: true };
+          };
+          const exportJson = () => JSON.stringify(state, null, 2);
+          const load = () => state;
+          return { get, bump, reset, setFromJson, exportJson, load };
+        })();
+
+        const Modal = (() => {
+          const modal = $("#modal");
+          const titleEl = $("#modalTitle");
+          const bodyEl = $("#modalBody");
+          let lastFocus = null;
+          const open = (title, bodyNode) => {
+            lastFocus = document.activeElement;
+            titleEl.textContent = title;
+            bodyEl.innerHTML = "";
+            bodyEl.appendChild(bodyNode);
+            modal.setAttribute("aria-hidden", "false");
+            const focusable = $$("button, [href], input, textarea, select, [tabindex]:not([tabindex='-1'])", modal)
+              .filter(n => !n.hasAttribute("disabled"));
+            (focusable[0] || modal).focus?.();
+          };
+          const close = () => {
+            modal.setAttribute("aria-hidden", "true");
+            bodyEl.innerHTML = "";
+            titleEl.textContent = "—";
+            lastFocus?.focus?.();
+          };
+          modal.addEventListener("click", (e) => {
+            const target = e.target;
+            if (target?.dataset?.close) close();
+          });
+          window.addEventListener("keydown", (e) => {
+            if (modal.getAttribute("aria-hidden") === "false" && e.key === "Escape") close();
+          });
+          return { open, close };
+        })();
+
+        const App = (() => {
+          const view = $("#view");
+          const topStatus = $("#topStatus");
+          let mode = "ref";
+
+          const refState = {
+            q: "",
+            filterEr: false,
+            filterIr: false,
+            filterIrregular: false,
+            filterEtrePC: false,
+            selectedVerbId: "etre",
+            selectedTense: "present",
+            showAllTenses: false,
+          };
+
+          const trainState = {
+            kind: "mc", // mc | typing | cards
+            onlyErrors: false,
+            current: null,
+            mc: { locked: false, picked: null },
+            typing: { hintLevel: 0, reveal: false, checked: false, lastOk: null },
+            cards: { flipped: false, withPronoun: true },
+          };
+
+          const setMode = (next) => {
+            mode = next;
+            $$("[data-mode]").forEach((b) => b.setAttribute("aria-selected", b.dataset.mode === mode ? "true" : "false"));
+            render();
+          };
+
+          const setTopStatus = () => {
+            const st = Progress.load();
+            let c = 0, w = 0;
+            for (const v of Object.values(st.items)) { c += v.c || 0; w += v.w || 0; }
+            const total = c + w;
+            const pct = total ? Math.round((c / total) * 100) : 0;
+            topStatus.textContent = total ? `${pct}% · ${c}✓ / ${w}✕` : "Нет попыток";
+          };
+
+          const chooseNextItem = () => {
+            const st = Progress.load();
+            let pool = ALL_ITEMS;
+            if (trainState.onlyErrors) {
+              pool = ALL_ITEMS.filter((it) => (st.items[keyOf(it.verbId, it.tenseId, it.pronIndex)]?.w || 0) > 0);
+              if (pool.length === 0) pool = ALL_ITEMS;
+            }
+            const weightFn = (it) => {
+              const rec = st.items[keyOf(it.verbId, it.tenseId, it.pronIndex)] || { c: 0, w: 0 };
+              const seen = rec.c + rec.w;
+              const base = 1;
+              const errBias = 1 + rec.w * 2.2 + Math.max(0, rec.w - rec.c) * 1.6;
+              const newBias = seen === 0 ? 1.6 : 0.0;
+              const settle = rec.c > 0 && rec.w === 0 ? 0.55 : 1.0;
+              return base * errBias * settle + newBias;
+            };
+            return sampleWeighted(pool, weightFn);
+          };
+
+          const ensureQuestion = () => {
+            if (!trainState.current) trainState.current = chooseNextItem();
+          };
+
+          const explainFor = (verb, tenseId) => {
+            const t = tenseById(tenseId);
+            if (tenseId === "passeCompose") {
+              const aux = verb.pcAux;
+              const extra = aux === "être"
+                ? "Внимание: в реальности причастие согласуется (allée/allés/allées), но здесь тренируем базовую m.sg."
+                : null;
+              return {
+                hint: `${t.hint} Для «${verb.infinitive}»: ${aux} + ${verb.pp}.`,
+                extra,
+              };
+            }
+            if (tenseId === "futurProche") return { hint: `${t.hint} Для «${verb.infinitive}»: aller (Présent) + infinitif.` };
+            return { hint: t.hint };
+          };
+
+          const renderRef = () => {
+            const controls = el("div", { class: "card" }, [
+              el("div", { class: "card-header" }, [
+                el("h2", { class: "card-title" }, "Справочник"),
+                el("div", { class: "subtle" }, "Поиск, фильтры и таблицы спряжения"),
+              ]),
+              el("div", { class: "grid-2" }, [
+                el("div", { class: "field" }, [
+                  el("div", { class: "label" }, "Поиск по инфинитиву"),
+                  el("input", {
+                    class: "input",
+                    value: refState.q,
+                    placeholder: "Например: venir, écrire, manger…",
+                    inputmode: "search",
+                    "aria-label": "Поиск",
+                    oninput: (e) => { refState.q = e.target.value; render(); },
+                  }),
+                ]),
+                el("div", { class: "field" }, [
+                  el("div", { class: "label" }, "Фильтры"),
+                  el("div", { class: "chips", role: "group", "aria-label": "Фильтры глаголов" }, [
+                    chip("Группа -er", refState.filterEr, (v) => { refState.filterEr = v; render(); }),
+                    chip("Группа -ir", refState.filterIr, (v) => { refState.filterIr = v; render(); }),
+                    chip("Неправильные", refState.filterIrregular, (v) => { refState.filterIrregular = v; render(); }),
+                    chip("С être в PC", refState.filterEtrePC, (v) => { refState.filterEtrePC = v; render(); }),
+                  ]),
+                ]),
+              ]),
+            ]);
+
+            const listCard = el("div", { class: "card" }, [
+              el("div", { class: "card-header" }, [
+                el("h3", { class: "card-title" }, "Глаголы"),
+                el("div", { class: "subtle" }, "Нажмите, чтобы открыть таблицы"),
+              ]),
+            ]);
+
+            const q = refState.q.trim().toLowerCase();
+            let verbs = VERBS.slice();
+            if (q) verbs = verbs.filter(v => v.infinitive.toLowerCase().includes(q));
+            const anyGroupFilter = refState.filterEr || refState.filterIr || refState.filterIrregular;
+            if (anyGroupFilter) {
+              verbs = verbs.filter(v =>
+                (refState.filterEr && v.group === "er") ||
+                (refState.filterIr && v.group === "ir") ||
+                (refState.filterIrregular && v.group === "irregular")
+              );
+            }
+            if (refState.filterEtrePC) verbs = verbs.filter(v => v.pcAux === "être");
+
+            const list = el("div", { class: "list", role: "list" });
+            if (verbs.length === 0) {
+              list.appendChild(el("div", { class: "subtle" }, "Ничего не найдено. Попробуйте другой запрос или снимите фильтры."));
+            } else {
+              for (const v of verbs) list.appendChild(verbRow(v));
+            }
+            listCard.appendChild(list);
+
+            const detail = el("div", { class: "card" }, renderVerbDetail());
+
+            return [controls, el("div", { class: "grid-2" }, [listCard, detail])];
+          };
+
+          const renderVerbDetail = () => {
+            const v = verbById(refState.selectedVerbId) || VERBS[0];
+            const tags = [];
+            tags.push(el("span", { class: "tag" }, v.group === "er" ? "группа -er" : v.group === "ir" ? "группа -ir" : "неправильный"));
+            tags.push(el("span", { class: "tag" }, `PC: ${v.pcAux}`));
+            if (v.pcAux === "être") tags.push(el("span", { class: "tag warn" }, "есть согласование"));
+
+            const top = el("div", { class: "card-header" }, [
+              el("div", {}, [
+                el("h3", { class: "card-title" }, v.infinitive),
+                el("div", { class: "subtle" }, `Перевод: ${v.ru}`),
+                el("div", { class: "subtle" }, "Таблицы спряжения для 6 местоимений"),
+              ]),
+              el("div", { class: "tags" }, tags),
+            ]);
+
+            const seg = el("div", { class: "segmented", role: "tablist", "aria-label": "Время" }, [
+              ...TENSES.map(t =>
+                el("button", {
+                  type: "button",
+                  role: "tab",
+                  "aria-selected": refState.showAllTenses ? "false" : (refState.selectedTense === t.id ? "true" : "false"),
+                  onclick: () => { refState.selectedTense = t.id; refState.showAllTenses = false; render(); },
+                }, t.short)
+              ),
+            ]);
+
+            const showAllBtn = el("button", {
+              type: "button",
+              class: `btn ${refState.showAllTenses ? "primary" : ""}`,
+              "aria-pressed": refState.showAllTenses ? "true" : "false",
+              onclick: () => { refState.showAllTenses = !refState.showAllTenses; render(); },
+            }, refState.showAllTenses ? "Показываю все времена" : "Показать всё");
+
+            const headRow = el("div", { class: "row spread" }, [
+              el("div", { class: "subtle" }, "Переключайте время или смотрите всё подряд"),
+              showAllBtn,
+            ]);
+
+            const body = el("div", { class: "quiz" });
+            if (refState.showAllTenses) {
+              for (const t of TENSES) body.appendChild(renderConjCard(v, t.id));
+            } else {
+              body.appendChild(renderConjCard(v, refState.selectedTense));
+            }
+
+            return [top, headRow, seg, body];
+          };
+
+          const renderConjCard = (verb, tenseId) => {
+            const t = tenseById(tenseId);
+            const { hint, extra } = explainFor(verb, tenseId);
+            const card = el("div", { class: "card compact" }, [
+              el("div", { class: "card-header" }, [
+                el("h4", { class: "card-title" }, t.label),
+                el("div", { class: "subtle" }, tenseId === "passeCompose" ? `${verb.pcAux} + ${verb.pp}` : ""),
+              ]),
+            ]);
+            const table = el("div", { class: "table", role: "table", "aria-label": `Спряжение: ${verb.infinitive} — ${t.label}` });
+            for (let i = 0; i < PRONOUNS.length; i++) {
+              table.appendChild(el("div", { class: "trow", role: "row" }, [
+                el("div", { class: "pron", role: "cell" }, PRONOUNS[i]),
+                el("div", { class: "form", role: "cell" }, conjugated(verb, tenseId, i)),
+              ]));
+            }
+            card.appendChild(table);
+            card.appendChild(el("div", { class: "subtle" }, hint));
+            if (extra) card.appendChild(el("div", { class: "subtle" }, extra));
+            return card;
+          };
+
+          const chip = (label, pressed, onToggle) => el("button", {
+            type: "button",
+            class: "chip",
+            "aria-pressed": pressed ? "true" : "false",
+            onclick: () => onToggle(!pressed),
+          }, label);
+
+          const verbRow = (v) => {
+            const tags = [];
+            tags.push(el("span", { class: "tag" }, v.group === "er" ? "-er" : v.group === "ir" ? "-ir" : "irreg."));
+            tags.push(el("span", { class: "tag" }, `PC: ${v.pcAux}`));
+            return el("div", {
+              class: "list-item",
+              role: "listitem",
+              tabindex: "0",
+              "aria-current": refState.selectedVerbId === v.id ? "true" : "false",
+              onclick: () => { refState.selectedVerbId = v.id; render(); },
+              onkeydown: (e) => {
+                if (e.key === "Enter" || e.key === " ") { e.preventDefault(); refState.selectedVerbId = v.id; render(); }
+              },
+            }, [
+              el("div", { class: "verb" }, [
+                el("strong", {}, v.infinitive),
+                el("span", { class: "subtle" }, `${v.ru}${v.pp ? ` · pp: ${v.pp}` : ""}`),
+              ]),
+              el("div", { class: "tags" }, tags),
+            ]);
+          };
+
+          const renderTrain = () => {
+            ensureQuestion();
+            const tseg = el("div", { class: "card" }, [
+              el("div", { class: "card-header" }, [
+                el("h2", { class: "card-title" }, "Тренировка"),
+                el("div", { class: "subtle" }, "Выберите тип, отвечайте и повторяйте слабые места"),
+              ]),
+              el("div", { class: "row spread" }, [
+                el("div", { class: "segmented", role: "tablist", "aria-label": "Тип тренировки" }, [
+                  tabBtn("mc", "Multiple Choice"),
+                  tabBtn("typing", "Typing"),
+                  tabBtn("cards", "Флеш‑карты"),
+                ]),
+                el("button", {
+                  type: "button",
+                  class: `btn ${trainState.onlyErrors ? "primary" : ""}`,
+                  "aria-pressed": trainState.onlyErrors ? "true" : "false",
+                  onclick: () => { trainState.onlyErrors = !trainState.onlyErrors; trainState.current = null; render(); },
+                }, trainState.onlyErrors ? "Только ошибки" : "Повтор ошибок"),
+              ]),
+            ]);
+
+            const body = trainState.kind === "mc" ? renderMC() : trainState.kind === "typing" ? renderTyping() : renderCards();
+            return [tseg, body];
+          };
+
+          const tabBtn = (kind, label) => el("button", {
+            type: "button",
+            role: "tab",
+            "aria-selected": trainState.kind === kind ? "true" : "false",
+            onclick: () => {
+              trainState.kind = kind;
+              trainState.current = null;
+              trainState.mc = { locked: false, picked: null };
+              trainState.typing = { hintLevel: 0, reveal: false, checked: false, lastOk: null };
+              trainState.cards = { flipped: false, withPronoun: true };
+              render();
+            },
+          }, label);
+
+          const renderPrompt = (item) => {
+            const verb = verbById(item.verbId);
+            const tense = tenseById(item.tenseId);
+            return el("div", { class: "prompt" }, [
+              el("span", { class: "pill" }, ["Местоимение: ", el("strong", {}, PRONOUNS[item.pronIndex])]),
+              el("span", { class: "pill" }, ["Глагол: ", el("strong", {}, verb.infinitive)]),
+              el("span", { class: "pill" }, ["Перевод: ", el("strong", {}, verb.ru)]),
+              el("span", { class: "pill" }, ["Время: ", el("strong", {}, tense.label)]),
+            ]);
+          };
+
+          const nextQuestion = () => {
+            trainState.current = chooseNextItem();
+            trainState.mc = { locked: false, picked: null };
+            trainState.typing = { hintLevel: 0, reveal: false, checked: false, lastOk: null };
+            trainState.cards.flipped = false;
+            render();
+          };
+
+          const openMiniTable = (verbId, tenseId) => {
+            const verb = verbById(verbId);
+            const tense = tenseById(tenseId);
+            const node = el("div", {}, [
+              el("div", { class: "subtle" }, `${verb.infinitive} — ${tense.label} · перевод: ${verb.ru}`),
+              renderConjCard(verb, tenseId),
+            ]);
+            Modal.open("Таблица", node);
+          };
+
+          function needMoreDistractors(distractors, correct) {
+            if (distractors.length < 3) return true;
+            const uniq = new Set([correct, ...distractors]);
+            return uniq.size !== distractors.length + 1;
+          }
+
+          const renderMC = () => {
+            const item = trainState.current;
+            const verb = verbById(item.verbId);
+            const correct = conjugated(verb, item.tenseId, item.pronIndex);
+            const pool = VERBS.filter(v => v.id !== verb.id).map(v => conjugated(v, item.tenseId, item.pronIndex));
+            const distractors = [];
+            for (const s of shuffle(pool)) {
+              if (distractors.length >= 3) break;
+              if (s !== correct && !distractors.includes(s)) distractors.push(s);
+            }
+            // Ensure uniqueness (edge-safe).
+            while (needMoreDistractors(distractors, correct)) {
+              const s = pool[(Math.random() * pool.length) | 0];
+              if (s !== correct && !distractors.includes(s)) distractors.push(s);
+            }
+            const options = shuffle([correct, ...distractors]).slice(0, 4);
+
+            const card = el("div", { class: "card" }, [
+              el("div", { class: "card-header" }, [
+                el("h3", { class: "card-title" }, "Тест: выбор ответа"),
+                el("div", { class: "subtle" }, "4 варианта, один правильный"),
+              ]),
+              renderPrompt(item),
+            ]);
+
+            const choices = el("div", { class: "choices", role: "group", "aria-label": "Варианты ответа" });
+            const k = keyOf(item.verbId, item.tenseId, item.pronIndex);
+            for (const opt of options) {
+              const isPicked = trainState.mc.picked === opt;
+              const isCorrect = opt === correct;
+              let cls = "choice";
+              if (trainState.mc.locked) {
+                if (isCorrect) cls += " good";
+                else if (isPicked && !isCorrect) cls += " bad";
+              }
+              choices.appendChild(el("button", {
+                type: "button",
+                class: cls,
+                disabled: trainState.mc.locked ? true : false,
+                "aria-label": `Ответ: ${opt}`,
+                onclick: () => {
+                  if (trainState.mc.locked) return;
+                  trainState.mc.picked = opt;
+                  trainState.mc.locked = true;
+                  Progress.bump(k, opt === correct);
+                  setTopStatus();
+                  render();
+                },
+              }, opt));
+            }
+            card.appendChild(choices);
+
+            if (trainState.mc.locked) {
+              const ok = trainState.mc.picked === correct;
+              const { hint, extra } = explainFor(verb, item.tenseId);
+              const fb = el("div", { class: `feedback ${ok ? "good" : "bad"}`, "aria-live": "polite" }, [
+                el("h3", {}, ok ? "Верно" : "Неверно"),
+                el("p", {}, hint),
+                extra ? el("p", {}, extra) : null,
+                el("div", { class: "answer" }, `Правильный ответ: ${correct}`),
+              ]);
+              card.appendChild(fb);
+              card.appendChild(el("div", { class: "btns" }, [
+                el("button", { type: "button", class: "btn primary", onclick: nextQuestion }, "Дальше"),
+                el("button", {
+                  type: "button",
+                  class: "btn",
+                  onclick: () => openMiniTable(item.verbId, item.tenseId),
+                }, "Показать таблицу"),
+                !ok ? el("button", {
+                  type: "button",
+                  class: "btn",
+                  onclick: () => { trainState.onlyErrors = true; trainState.current = null; render(); },
+                }, "Повторить ошибки") : null,
+              ]));
+            } else {
+              card.appendChild(el("div", { class: "subtle" }, "Выберите вариант. Подсказка: акценты важны."));
+            }
+            return card;
+          };
+
+          const renderTyping = () => {
+            const item = trainState.current;
+            const verb = verbById(item.verbId);
+            const correct = conjugated(verb, item.tenseId, item.pronIndex);
+            const k = keyOf(item.verbId, item.tenseId, item.pronIndex);
+
+            const input = el("input", {
+              class: "input",
+              placeholder: "Введите полный ответ (например: j'ai vu)",
+              autocomplete: "off",
+              autocapitalize: "none",
+              spellcheck: "false",
+              "aria-label": "Ответ",
+            });
+
+            const hintBox = el("div", { class: "subtle", id: "hintBox" }, "");
+            const answerBox = el("div", { class: "subtle", id: "answerBox" }, "");
+            const feedback = el("div", { class: "feedback", style: "display:none" });
+
+            const applyHint = () => {
+              const max = correct.length;
+              const level = clamp(trainState.typing.hintLevel, 0, max);
+              if (level === 0) { hintBox.textContent = ""; return; }
+              hintBox.textContent = `Подсказка: ${correct.slice(0, level)}…`;
+            };
+
+            const showAnswer = () => {
+              trainState.typing.reveal = true;
+              answerBox.innerHTML = "";
+              answerBox.appendChild(el("div", { class: "answer", style: "font-weight: 820; color: var(--text);" }, `Ответ: ${correct}`));
+            };
+
+            const check = () => {
+              if (trainState.typing.checked) return;
+              const got = normalizeInput(input.value).toLowerCase();
+              const exp = normalizeInput(correct).toLowerCase();
+              const ok = got === exp;
+              Progress.bump(k, ok);
+              setTopStatus();
+              feedback.style.display = "block";
+              feedback.className = `feedback ${ok ? "good" : "bad"}`;
+              feedback.innerHTML = "";
+              feedback.appendChild(el("h3", {}, ok ? "Верно" : "Неверно"));
+              const { hint, extra } = explainFor(verb, item.tenseId);
+              feedback.appendChild(el("p", {}, hint));
+              if (extra) feedback.appendChild(el("p", {}, extra));
+              feedback.appendChild(el("div", { class: "answer" }, `Правильный ответ: ${correct}`));
+              trainState.typing.checked = true;
+              trainState.typing.lastOk = ok;
+            };
+
+            const card = el("div", { class: "card" }, [
+              el("div", { class: "card-header" }, [
+                el("h3", { class: "card-title" }, "Тест: ввод (Typing)"),
+                el("div", { class: "subtle" }, "Пробелы — да, акценты — обязательно"),
+              ]),
+              renderPrompt(item),
+              el("div", { class: "field" }, [
+                el("div", { class: "label" }, "Ваш ответ (включая местоимение)"),
+                input,
+                hintBox,
+                answerBox,
+              ]),
+              el("div", { class: "btns" }, [
+                el("button", { type: "button", class: "btn primary", onclick: check, disabled: trainState.typing.checked ? true : false }, "Проверить"),
+                el("button", {
+                  type: "button",
+                  class: "btn",
+                  disabled: trainState.typing.checked ? true : false,
+                  onclick: () => { trainState.typing.hintLevel = Math.max(1, trainState.typing.hintLevel + 1); applyHint(); },
+                }, "Подсказка"),
+                el("button", { type: "button", class: "btn", onclick: showAnswer }, "Показать ответ"),
+                el("button", { type: "button", class: "btn", onclick: () => openMiniTable(item.verbId, item.tenseId) }, "Таблица"),
+              ]),
+              feedback,
+              el("div", { class: "btns" }, [
+                el("button", { type: "button", class: "btn primary", onclick: nextQuestion }, "Дальше"),
+                (trainState.typing.checked && trainState.typing.lastOk === false) ? el("button", {
+                  type: "button",
+                  class: "btn",
+                  onclick: () => { trainState.onlyErrors = true; trainState.current = null; render(); },
+                }, "Повторить ошибки") : null,
+              ]),
+            ]);
+
+            input.addEventListener("keydown", (e) => {
+              if (e.key === "Enter") { e.preventDefault(); check(); }
+            });
+            applyHint();
+            return card;
+          };
+
+          const renderCards = () => {
+            const item = trainState.current;
+            const verb = verbById(item.verbId);
+            const tense = tenseById(item.tenseId);
+            const correct = conjugated(verb, item.tenseId, item.pronIndex);
+            const k = keyOf(item.verbId, item.tenseId, item.pronIndex);
+
+            const inner = el("div", { class: `flashcard-inner ${trainState.cards.flipped ? "is-flipped" : ""}`, tabindex: "0", role: "button", "aria-label": "Флеш‑карта. Нажмите, чтобы перевернуть." }, [
+              el("div", { class: "face front" }, [
+                el("div", { class: "big" }, [
+                  el("span", { class: "muted" }, trainState.cards.withPronoun ? `${PRONOUNS[item.pronIndex]} — ` : ""),
+                  el("span", {}, verb.infinitive),
+                ]),
+                el("div", { class: "small" }, `Время: ${tense.label}`),
+                el("div", { class: "small" }, "Нажмите, чтобы перевернуть"),
+              ]),
+              el("div", { class: "face back" }, [
+                el("div", { class: "big" }, correct),
+                el("div", { class: "small" }, explainFor(verb, item.tenseId).hint),
+              ]),
+            ]);
+
+            const togglePronoun = el("button", {
+              type: "button",
+              class: `btn ${trainState.cards.withPronoun ? "primary" : ""}`,
+              "aria-pressed": trainState.cards.withPronoun ? "true" : "false",
+              onclick: () => { trainState.cards.withPronoun = !trainState.cards.withPronoun; render(); },
+            }, trainState.cards.withPronoun ? "С местоимением" : "Без местоимения");
+
+            const rate = (ok) => {
+              Progress.bump(k, ok);
+              setTopStatus();
+              nextQuestion();
+            };
+
+            inner.addEventListener("click", () => { trainState.cards.flipped = !trainState.cards.flipped; render(); });
+            inner.addEventListener("keydown", (e) => {
+              if (e.key === "Enter" || e.key === " ") { e.preventDefault(); trainState.cards.flipped = !trainState.cards.flipped; render(); }
+            });
+
+            return el("div", { class: "card" }, [
+              el("div", { class: "card-header" }, [
+                el("h3", { class: "card-title" }, "Флеш‑карточки"),
+                el("div", { class: "subtle" }, "Переверните карточку и отметьте результат"),
+              ]),
+              el("div", { class: "row spread" }, [
+                renderPrompt(item),
+                togglePronoun,
+              ]),
+              el("div", { class: "flashcard-wrap" }, [
+                el("div", { class: "flashcard" }, inner),
+                el("div", { class: "btns" }, [
+                  el("button", { type: "button", class: "btn primary", onclick: () => rate(true), "aria-label": "Знаю" }, "Знаю"),
+                  el("button", { type: "button", class: "btn", onclick: () => rate(false), "aria-label": "Не знаю" }, "Не знаю"),
+                  el("button", { type: "button", class: "btn", onclick: () => openMiniTable(item.verbId, item.tenseId) }, "Таблица"),
+                ]),
+              ]),
+            ]);
+          };
+
+          const renderStats = () => {
+            const st = Progress.load();
+            let c = 0, w = 0;
+            for (const v of Object.values(st.items)) { c += v.c || 0; w += v.w || 0; }
+            const total = c + w;
+            const pct = total ? Math.round((c / total) * 100) : 0;
+
+            const byVerb = new Map(VERBS.map(v => [v.id, { c: 0, w: 0 }]));
+            const byTense = new Map(TENSES.map(t => [t.id, { c: 0, w: 0 }]));
+            for (const [k, v] of Object.entries(st.items)) {
+              const { verbId, tenseId } = parseKey(k);
+              const vb = byVerb.get(verbId);
+              const tt = byTense.get(tenseId);
+              if (vb) { vb.c += v.c || 0; vb.w += v.w || 0; }
+              if (tt) { tt.c += v.c || 0; tt.w += v.w || 0; }
+            }
+
+            const worst = Array.from(byVerb.entries())
+              .map(([id, v]) => {
+                const attempts = v.c + v.w;
+                const acc = attempts ? v.c / attempts : 1;
+                return { id, ...v, attempts, acc };
+              })
+              .sort((a, b) => (b.w - a.w) || (a.acc - b.acc))
+              .slice(0, 5);
+
+            const card = el("div", { class: "card" }, [
+              el("div", { class: "card-header" }, [
+                el("h2", { class: "card-title" }, "Статистика"),
+                el("div", { class: "subtle" }, "Прогресс хранится локально на устройстве"),
+              ]),
+              el("div", { class: "kpi" }, [
+                kpiTile("Точность", total ? `${pct}%` : "—", total ? `${c}✓ / ${w}✕` : "Нет данных"),
+                kpiTile("Попытки", total ? String(total) : "0", "Всего ответов"),
+                kpiTile("Ошибки", String(w), "Всего ошибок"),
+                kpiTile("Изучено", String(Object.keys(st.items).length), "Комбинаций с прогрессом"),
+              ]),
+            ]);
+
+            const worstCard = el("div", { class: "card" }, [
+              el("div", { class: "card-header" }, [
+                el("h3", { class: "card-title" }, "Топ‑5 сложных глаголов"),
+                el("div", { class: "subtle" }, "Сортировка: больше ошибок → ниже точность"),
+              ]),
+            ]);
+            const worstList = el("div", { class: "list" });
+            if (total === 0) {
+              worstList.appendChild(el("div", { class: "subtle" }, "Пока нет попыток. Перейдите в «Тренировка»."));
+            } else {
+              for (const it of worst) {
+                const v = verbById(it.id);
+                const accPct = it.attempts ? Math.round(it.acc * 100) : 100;
+                  worstList.appendChild(el("div", { class: "list-item", role: "listitem" }, [
+                    el("div", { class: "verb" }, [
+                      el("strong", {}, v.infinitive),
+                      el("span", { class: "subtle" }, v.ru),
+                      el("span", { class: "subtle" }, `${accPct}% · ${it.c}✓ / ${it.w}✕`),
+                    ]),
+                    el("div", { class: "tags" }, [
+                      el("span", { class: "tag" }, v.group === "er" ? "-er" : v.group === "ir" ? "-ir" : "irreg."),
+                      el("span", { class: `tag ${v.pcAux === "être" ? "warn" : ""}` }, `PC: ${v.pcAux}`),
+                    ]),
+                  ]));
+              }
+            }
+            worstCard.appendChild(worstList);
+
+            const distCard = el("div", { class: "card" }, [
+              el("div", { class: "card-header" }, [
+                el("h3", { class: "card-title" }, "Распределение по временам"),
+                el("div", { class: "subtle" }, "Где чаще ошибаетесь — там больше повторений"),
+              ]),
+            ]);
+            const dist = el("div", { class: "table", role: "table", "aria-label": "Статистика по временам" });
+            for (const t of TENSES) {
+              const rec = byTense.get(t.id) || { c: 0, w: 0 };
+              const att = rec.c + rec.w;
+              const acc = att ? Math.round((rec.c / att) * 100) : 0;
+              dist.appendChild(el("div", { class: "trow", role: "row" }, [
+                el("div", { class: "pron", role: "cell" }, t.label),
+                el("div", { class: "form", role: "cell" }, att ? `${acc}% · ${rec.c}✓ / ${rec.w}✕` : "—"),
+              ]));
+            }
+            distCard.appendChild(dist);
+
+            const actions = el("div", { class: "card" }, [
+              el("div", { class: "card-header" }, [
+                el("h3", { class: "card-title" }, "Действия"),
+                el("div", { class: "subtle" }, "Экспорт/импорт JSON и сброс"),
+              ]),
+              el("div", { class: "btns" }, [
+                el("button", { type: "button", class: "btn", onclick: openExportImport }, "Экспорт / Импорт (JSON)"),
+                el("button", {
+                  type: "button",
+                  class: "btn danger",
+                  onclick: () => {
+                    Modal.open("Сброс прогресса", el("div", { class: "quiz" }, [
+                      el("div", { class: "subtle" }, "Это удалит статистику на этом устройстве (localStorage)."),
+                      el("div", { class: "btns" }, [
+                        el("button", { type: "button", class: "btn danger", onclick: () => { Progress.reset(); setTopStatus(); Modal.close(); render(); } }, "Сбросить"),
+                        el("button", { type: "button", class: "btn", onclick: () => Modal.close() }, "Отмена"),
+                      ]),
+                    ]));
+                  },
+                }, "Сбросить прогресс"),
+              ]),
+            ]);
+
+            return [card, el("div", { class: "grid-2" }, [worstCard, distCard]), actions];
+          };
+
+          const kpiTile = (label, num, sub) => el("div", { class: "tile" }, [
+            el("div", { class: "num" }, num),
+            el("div", { class: "lbl" }, label),
+            el("div", { class: "subtle" }, sub),
+          ]);
+
+          const openExportImport = () => {
+            const text = el("textarea", {
+              class: "input",
+              "aria-label": "JSON прогресса",
+            }, []);
+            text.value = Progress.exportJson();
+
+            const msg = el("div", { class: "subtle", id: "eiMsg" }, "Экспортируйте или вставьте JSON и нажмите «Импортировать».");
+            const file = el("input", { type: "file", accept: "application/json,.json", class: "input", "aria-label": "Импорт из файла" });
+
+            const download = () => {
+              const blob = new Blob([text.value], { type: "application/json;charset=utf-8" });
+              const url = URL.createObjectURL(blob);
+              const a = el("a", { href: url, download: `lesverbes-progress-${new Date().toISOString().slice(0, 10)}.json` }, "download");
+              document.body.appendChild(a);
+              a.click();
+              a.remove();
+              URL.revokeObjectURL(url);
+            };
+            const copy = async () => {
+              try { await navigator.clipboard.writeText(text.value); msg.textContent = "Скопировано в буфер обмена."; }
+              catch { msg.textContent = "Не удалось скопировать (браузер мог запретить). Можно выделить и скопировать вручную."; }
+            };
+            const doImport = () => {
+              const res = Progress.setFromJson(text.value);
+              if (!res.ok) { msg.textContent = res.error; return; }
+              msg.textContent = "Импортировано. Прогресс обновлён.";
+              setTopStatus();
+              render();
+            };
+            file.addEventListener("change", async () => {
+              const f = file.files?.[0];
+              if (!f) return;
+              try {
+                const content = await f.text();
+                text.value = content;
+                msg.textContent = "Файл загружен. Нажмите «Импортировать».";
+              } catch {
+                msg.textContent = "Не удалось прочитать файл.";
+              }
+            });
+
+            const body = el("div", { class: "quiz" }, [
+              el("div", { class: "field" }, [
+                el("div", { class: "label" }, "JSON"),
+                text,
+                msg,
+              ]),
+              el("div", { class: "field" }, [
+                el("div", { class: "label" }, "Импорт из файла (опционально)"),
+                file,
+              ]),
+              el("div", { class: "btns" }, [
+                el("button", { type: "button", class: "btn primary", onclick: doImport }, "Импортировать"),
+                el("button", { type: "button", class: "btn", onclick: () => { text.value = Progress.exportJson(); msg.textContent = "Экспорт обновлён."; } }, "Обновить экспорт"),
+                el("button", { type: "button", class: "btn", onclick: copy }, "Скопировать"),
+                el("button", { type: "button", class: "btn", onclick: download }, "Скачать файл"),
+              ]),
+            ]);
+            Modal.open("Экспорт / Импорт", body);
+          };
+
+          const render = () => {
+            setTopStatus();
+            view.innerHTML = "";
+            const nodes = mode === "ref" ? renderRef() : mode === "train" ? renderTrain() : renderStats();
+            for (const n of nodes) view.appendChild(n);
+          };
+
+          // Init listeners
+          $$("[data-mode]").forEach((b) => b.addEventListener("click", () => setMode(b.dataset.mode)));
+
+          // Initial render
+          render();
+          return { render, setMode };
+        })();
+      })();
+    </script>
+  </body>
+</html>
