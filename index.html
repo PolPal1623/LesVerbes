@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
-    <title>Les Verbes — 31 глагол</title>
+    <title>French Learning Suite · Les Verbes</title>
     <style>
       :root {
         --bg: #f2f2f7;
@@ -106,6 +106,33 @@
         display: flex;
         flex-direction: column;
         line-height: 1.1;
+      }
+
+      .suite-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 36px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(0,0,0,0.03);
+        color: var(--text);
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 700;
+        transition: background 180ms ease, transform 180ms ease, border-color 180ms ease;
+      }
+      @media (prefers-color-scheme: dark) {
+        .suite-link { background: rgba(255,255,255,0.06); }
+      }
+      .suite-link:hover,
+      .suite-link:focus-visible {
+        background: color-mix(in srgb, var(--accent) 16%, var(--card));
+        border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+        outline: none;
+        text-decoration: none;
+        transform: translateY(-1px);
       }
 
       .segmented {
@@ -546,9 +573,13 @@
           <div class="brand">
             <div class="brand-title">
               <h1>Les Verbes</h1>
-              <small>31 глагол · 5 времён · без интернета</small>
+              <small>40 глаголов · 5 времён · без интернета</small>
             </div>
-            <small id="topStatus" aria-live="polite"></small>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end">
+              <small id="topStatus" aria-live="polite"></small>
+              <a class="suite-link" href="https://polpal1623.github.io/FrenchLibrary/">Все приложения</a>
+              <a class="suite-link" href="https://github.com/PolPal1623/LesVerbes">GitHub</a>
+            </div>
           </div>
           <div class="segmented" role="tablist" aria-label="Режимы">
             <button type="button" role="tab" data-mode="ref" aria-selected="true">Справочник</button>
@@ -920,6 +951,19 @@
               present: ["ouvre", "ouvres", "ouvre", "ouvrons", "ouvrez", "ouvrent"],
               imparfait: ["ouvrais", "ouvrais", "ouvrait", "ouvrions", "ouvriez", "ouvraient"],
               futurSimple: ["ouvrirai", "ouvriras", "ouvrira", "ouvrirons", "ouvrirez", "ouvriront"],
+            },
+          },
+          {
+            id: "sentir",
+            infinitive: "sentir",
+            ru: "чувствовать",
+            group: "irregular",
+            pcAux: "avoir",
+            pp: "senti",
+            conj: {
+              present: ["sens", "sens", "sent", "sentons", "sentez", "sentent"],
+              imparfait: ["sentais", "sentais", "sentait", "sentions", "sentiez", "sentaient"],
+              futurSimple: ["sentirai", "sentiras", "sentira", "sentirons", "sentirez", "sentiront"],
             },
           },
           {
